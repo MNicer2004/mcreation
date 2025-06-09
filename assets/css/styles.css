@@ -836,40 +836,76 @@ img {
   }
 }
 
+/* ==========================================================================
+   Tablet (768px–1199px): fluid 3-column “desktop” layout
+   ========================================================================== */
+/* ==========================================================================
+   Tablet (768px–1199px): tighter 3-column + 2-up cards
+   ========================================================================== */
+/* ==========================================================================
+   Tablet (768px–1199px): scaled 3-column + 2-up cards
+   ========================================================================== */
 @media screen and (min-width: 768px) {
   .home__container {
-    grid-template-columns: repeat(2, 350px);
-    align-items: flex-start;
+    display: grid;
+    /* side panels shrink to 140px min, center to 220px min; then grow 1:2:1 */
+    grid-template-columns:
+      minmax(140px, 1fr)
+      minmax(220px, 2fr)
+      minmax(140px, 1fr);
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 960px;    /* optional: cap overall width */
+    margin: 0 auto;
+    padding: 0 1rem;
+    box-sizing: border-box;
+  }
+  .home__container .info   { grid-column: 1; grid-row: 1; }
+  .home__container .perfil { grid-column: 2; grid-row: 1 / span 2; }
+  .home__container .about  { grid-column: 3; grid-row: 1 / span 2; align-content: center; }
+  .home__container .skills { grid-column: 1; grid-row: 2; }
+
+  /* force the portrait image to fill its slot */
+
+
+  /* shrink the “MCreation” logo text on tablets */
+  .home__container .info h1 {
+    font-size: 1.25rem;
+    line-height: 1.2;
   }
 
-  
+  /* WORKS/PROJECTS & SERVICES: exactly 2 cards per row */
   .projects__container,
   .services__container {
-    grid-template-columns: repeat(2, 350px);
+    display: grid;
+    grid-template-columns: repeat(2, minmax(150px, 1fr));
+    gap: 1rem;
+    max-width: 960px;    /* align with home__container */
+    margin: 2rem auto 0;
+    padding: 0 1rem;
+    box-sizing: border-box;
   }
 
-  .experience__container {
-    grid-template-columns: initial;
+  /* optional tweak: shrink card padding for a tighter look */
+  .projects__container .card,
+  .services__container .card {
+    padding: 0.75rem;
   }
+  .experience__container {
+    /* remove the old one-column centering… */
+    grid-template-columns: initial;
+    /* …and pin it back to the left edge: */
+    justify-content: start;
+    /* (if you had a width/max-width, you can leave it – it’ll still align left) */
+  }
+
   .experience__card {
     grid-template-columns: 320px 380px;
     align-items: center;
   }
-  .footer__container,
-  .footer_content {
-    grid-template-columns: repeat(2, max-content);
-    align-items: center;
-  }
-  .footer__container {
-    justify-content: space-between;
-  }
-  .footer__content {
-    column-gap: 4.5rem;
-  }
-  .show-scroll {
-    bottom: 3rem;
-  }
 }
+
+
 
 /* For large devices */
 @media screen and (min-width: 1200px) {
@@ -926,9 +962,16 @@ img {
   .skills__title {
     font-size: var(--h3-font-size);
   }
-  .projects__container {
-    grid-template-columns: repeat(3, 368px);
+  .projects__container,
+  .services__container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(400px, 1fr));
     gap: 2rem;
+    width: 20%;
+    max-width: 1120px;      /* matches your home grid max */
+    margin: 2rem auto;      /* centers it below the hero */
+    padding: 0 1rem;
+    box-sizing: border-box;
   }
 
   .projects__card {

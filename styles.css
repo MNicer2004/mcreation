@@ -1,7 +1,6 @@
 /*=============== GOOGLE FONTS ===============*/
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
-
 /*=============== VARIABLES CSS ===============*/
 :root {
   /*========== Colors ==========*/
@@ -147,12 +146,16 @@ img {
   padding: 1rem 2rem;
   border-radius: 4rem;
   z-index: var(--z-fixed);
+  display: flex;
+  justify-content: center;
 }
 
 .nav__list {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: max-content;
+  gap: 2rem;
 }
 
 .nav__link {
@@ -174,20 +177,17 @@ img {
 
 /*=============== HOME ===============*/
 /*===== PERFIL =====*/
-
 .perfil__img {
-  position: absolute;       /* keep it positioned over the card */
-  top: 50%;                 /* center vertically */
-  left: 50%;                /* center horizontally */
+  position: absolute;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   border-radius: inherit;
-  height: 100%;             /* fill the container’s height */
-  width: auto;              /* auto width to preserve aspect ratio */
-
-  object-fit: cover;        /* maintain ratio, crop only top/bottom if needed */
-  object-position: center;  /* center the crop */
+  height: 100%;
+  width: auto;
+  object-fit: cover;
+  object-position: center;
 }
-
 
 .perfil__data {
   align-self: flex-end;
@@ -204,36 +204,27 @@ img {
   margin-bottom: 1rem;
 }
 
-
-
 .perfil__buttons .button {
   padding: 0.75rem 0;
 }
-/* ── FORCE DARK FILL + VISIBLE OVERFLOW ── */
-/* ─── PERFIL BORDER (sharp + blur) ─── */
-/* ───────── PERFIL: ORANGE FILL + BORDER-ONLY ORANGE→YELLOW ANIMATION ───────── */
+
 .perfil {
   position: relative;
-  background: var(--first-color-alt); /* your orange fill */
+  background: var(--first-color-alt);
   border-radius: 2rem;
-  overflow: visible;                  /* allow the glow out */
+  overflow: visible;
   z-index: 0;
   display: grid !important;
-  grid-template-rows: 1fr auto !important; /* content above, buttons below */
+  grid-template-rows: 1fr auto !important;
 }
 
-
-/* sharp orange→yellow border */
+/* Profile glow border */
 .perfil::before {
   content: '';
   position: absolute;
-  inset: 0;                     /* cover the card exactly */
-  padding: 2px;                 /* border thickness */
+  inset: 0;
+  padding: 2px;
   border-radius: inherit;
-
-  /* two backgrounds:
-     1) a solid orange padding-box
-     2) an animated orange→yellow border-box */
   background:
     linear-gradient(var(--first-color-alt), var(--first-color-alt)) padding-box,
     linear-gradient(
@@ -242,15 +233,13 @@ img {
       #ffeb3b,
       var(--first-color-alt)
     ) border-box;
-
   background-origin: padding-box, border-box;
   background-clip:  padding-box, border-box;
-  background-size: 200% 200%;   /* make it “wider” to animate */
+  background-size: 200% 200%;
   animation: steam 6s linear infinite;
-  z-index: -1;                   /* under the card’s content */
+  z-index: -1;
 }
 
-/* soft glow of the same gradient */
 .perfil::after {
   content: '';
   position: absolute;
@@ -270,7 +259,7 @@ img {
   animation: steam 6s linear infinite;
   filter: blur(30px);
   opacity: 0.6;
-  z-index: -2;                   /* behind everything */
+  z-index: -2;
 }
 
 @keyframes steam {
@@ -278,11 +267,13 @@ img {
   50%  { background-position: 100% 50%; }
   100% { background-position:   0% 50%; }
 }
+
 .perfil__buttons {
   display: grid;
   column-gap: 0.5rem;
   grid-template-columns: repeat(2, 1fr);
 }
+
 /*===== INFO & ABOUT & SKILLS =====*/
 .info,
 .about,
@@ -300,7 +291,7 @@ img {
 }
 
 .info__name {
-  font: var(--font-semi-bold) var(--h1-font-size) var(--second-font);
+  font-size: var(--h1-font-size);
 }
 
 .info__data {
@@ -404,36 +395,21 @@ img {
 }
 
 /*=============== BUTTON ===============*/
-/* ==============================================
-   BUTTON CORNER ANIMATION (applies to .button)
-   ============================================== */
-
-/* ─── GLOBAL BUTTON EDGE ANIMATION ─── */
-/* ───────── BUTTON EDGE ANIMATION ───────── */
-/* ───────────────────────────────────────────────
-/*────────────────────────────────────
-  BUTTON CONIC-GRADIENT WRAPPER
-────────────────────────────────────*/
-
-/*──────────────────────────────────────────
-  ANIMATED ROUNDED BORDER FOR .animate-border
-──────────────────────────────────────────*/
-/* ───────── BUTTON BASE ───────── */
 .button {
   text-align: center;
   position: relative;
   display: inline-block;
-  padding: .75rem 2rem;             /* pill sizing */
-  background: #272727;               /* dark gray/black interior */
+  padding: 0.75rem 2rem;
+  background: #272727;
   color: #fff;
   font-size: 1rem;
-                /* keeps the pill shape */
-  overflow: hidden;                  /* clip the animated spans */
+  overflow: hidden;
   text-decoration: none;
   font-weight: 500;
+  border-radius: 0.75rem;
+  transition: background-color 0.3s ease;
 }
 
-/* ───────── INNER SHEEN (optional) ───────── */
 .button::before {
   content: '';
   position: absolute;
@@ -443,91 +419,83 @@ img {
   pointer-events: none;
 }
 
-/* ───────── ANIMATED ORANGE EDGES ───────── */
-/* top edge */
-.button span:nth-of-type(1) {
+.button span {
+  position: relative;
+  z-index: 1;
+}
+
+/* Edge animations */
+.button span:nth-of-type(1),
+.button span:nth-of-type(2),
+.button span:nth-of-type(3),
+.button span:nth-of-type(4) {
   position: absolute;
+}
+
+.button span:nth-of-type(1) {
   top: 0; left: 0;
   width: 100%; height: 2px;
-  background: linear-gradient(
-    to right,
-    var(--first-color),      /* main orange */
-    var(--first-color-alt)   /* lighter orange */
-  );
+  background: linear-gradient(to right, var(--first-color), var(--first-color-alt));
   animation: edgeX 2s linear infinite;
 }
 
-/* right edge */
 .button span:nth-of-type(2) {
-  position: absolute;
   top: 0; right: 0;
   width: 2px; height: 100%;
-  background: linear-gradient(
-    to bottom,
-    var(--first-color),
-    var(--first-color-alt)
-  );
+  background: linear-gradient(to bottom, var(--first-color), var(--first-color-alt));
   animation: edgeY 2s linear infinite 0.5s;
 }
 
-/* bottom edge */
 .button span:nth-of-type(3) {
-  position: absolute;
   bottom: 0; right: 0;
   width: 100%; height: 2px;
-  background: linear-gradient(
-    to left,
-    var(--first-color),
-    var(--first-color-alt)
-  );
+  background: linear-gradient(to left, var(--first-color), var(--first-color-alt));
   animation: edgeX 2s linear infinite reverse 1s;
 }
 
-/* left edge */
 .button span:nth-of-type(4) {
-  position: absolute;
   top: 0; left: 0;
   width: 2px; height: 100%;
-  background: linear-gradient(
-    to top,
-    var(--first-color),
-    var(--first-color-alt)
-  );
+  background: linear-gradient(to top, var(--first-color), var(--first-color-alt));
   animation: edgeY 2s linear infinite reverse 1.5s;
 }
 
-/* ───────── KEYFRAMES ───────── */
 @keyframes edgeX {
   0%   { transform: translateX(-100%); }
-  100% { transform: translateX(100%);  }
+  100% { transform: translateX(100%); }
 }
 @keyframes edgeY {
   0%   { transform: translateY(-100%); }
-  100% { transform: translateY(100%);  }
+  100% { transform: translateY(100%); }
 }
 
-/* ───────── HOVER STATE ───────── */
 .button:hover {
-  background: #1f1f1f;              /* slightly darker on hover */
+  background: #1f1f1f;
 }
-
 
 /*=============== PROJECTS (cards) ===============*/
 .projects__card {
   background-color: var(--container-color);
   padding: 1.5rem;
   border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .projects__image {
-  display: block;
   overflow: hidden;
   border-radius: 1.5rem;
   margin-bottom: 1.5rem;
+  display: block;
 }
 
 .projects__img {
-  transition: transform 0.4s;
+  transition: transform 0.4s ease;
+}
+
+.projects__card:hover .projects__img,
+.projects__card:focus-within .projects__img {
+  transform: scale(1.2);
 }
 
 .projects__name {
@@ -538,27 +506,30 @@ img {
 .projects__description {
   color: var(--text-color);
   margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.projects__skills {
+  background-color: var(--black-color);
+  padding-inline: 0.75rem;
+  height: 34px;
+  border-radius: 4rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: max-content;
 }
 
 .projects__skill {
   width: 1rem;
-  transition: transform 0.4s;
+  transition: transform 0.4s ease;
 }
 
-.projects__skill:hover {
+.projects__skill:hover,
+.projects__skill:focus {
   transform: translateY(-0.25rem);
-}
-
-.projects__skills {
-  width: max-content;
-  height: 34px;
-  background-color: var(--black-color);
-  padding-inline: 0.75rem;
-  display: flex;
-  align-items: center;
-  column-gap: 0.75rem;
-  border-radius: 4rem;
-  margin-bottom: 1.5rem;
+  outline: none;
 }
 
 .projects__button {
@@ -566,23 +537,19 @@ img {
   display: inline-flex;
   align-items: center;
   column-gap: 0.5rem;
-  transition: color 0.4s;
+  font-weight: var(--font-medium);
+  transition: color 0.4s ease;
+  cursor: pointer;
+}
+
+.projects__button:hover,
+.projects__button:focus {
+  color: var(--text-color);
+  outline: none;
 }
 
 .projects__button i {
   font-size: 1.25rem;
-}
-
-.projects__button span {
-  font-weight: var(--font-medium);
-}
-
-.projects__button:hover {
-  color: var(--text-color);
-}
-
-.projects__card:hover .projects__img {
-  transform: scale(1.2);
 }
 
 /*=============== SERVICES ===============*/
@@ -590,12 +557,16 @@ img {
   background-color: var(--container-color);
   padding: 4rem 1.5rem 3.5rem 1.5rem;
   border-radius: 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
 }
 
 .services__icon {
-  display: inline-block;
   position: relative;
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
 }
 
 .services__icon i {
@@ -612,7 +583,12 @@ img {
   position: absolute;
   top: -1rem;
   right: -1rem;
-  transition: transform 0.4s;
+  transition: transform 0.4s ease;
+}
+
+.services__card:hover .services__circle,
+.services__card:focus-within .services__circle {
+  transform: translate(0.25rem, -0.25rem);
 }
 
 .services__name {
@@ -624,10 +600,6 @@ img {
   color: var(--text-color);
 }
 
-.services__card:hover .services__circle {
-  transform: translate(0.25rem, -0.25rem);
-}
-
 /*=============== EXPERIENCE ===============*/
 .experience__container {
   row-gap: 2rem;
@@ -635,47 +607,66 @@ img {
 
 .experience__card {
   display: grid;
+  grid-template-columns: 1fr;
   row-gap: 1rem;
+  background-color: var(--container-color);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  transition: box-shadow 0.3s ease;
+}
+
+.experience__card:hover,
+.experience__card:focus-within {
+  box-shadow: 0 6px 16px rgba(0,0,0,0.5);
 }
 
 .experience__company {
   font-size: var(--h2-font-size);
+  font-weight: var(--font-semi-bold);
 }
 
 .experience__data {
-  background-color: var(--container-color);
-  padding: 1.5rem;
-  border-radius: 1.5rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .experience__profession {
   font-size: var(--h3-font-size);
   margin-bottom: 0.5rem;
+  font-weight: var(--font-medium);
 }
 
 .experience__date {
-  display: block;
   font-size: var(--smaller-font-size);
   margin-bottom: 1rem;
+  color: var(--text-color);
 }
 
 .experience__description {
   color: var(--text-color);
+  line-height: 1.4;
 }
 
 /*=============== CONTACT ===============*/
 .contact__group,
 .contact__form {
   gap: 1rem;
+  display: grid;
 }
 
 .contact__form {
   position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contact__group {
+  grid-template-columns: 1fr 1fr;
 }
 
 .contact__input {
   background-color: var(--container-color);
-  padding: 1.25rem;
+  padding: 1.25rem 1.5rem;
   border-radius: 4rem;
   color: var(--white-color);
 }
@@ -697,6 +688,20 @@ img {
 .contact__button {
   margin-top: 1.5rem;
   cursor: pointer;
+  padding: 1rem 2rem;
+  background-color: var(--first-color);
+  border-radius: 4rem;
+  color: var(--white-color);
+  font-weight: var(--font-semi-bold);
+  border: none;
+  transition: background-color 0.3s ease;
+  justify-self: center;
+}
+
+.contact__button:hover,
+.contact__button:focus {
+  background-color: var(--first-color-alt);
+  outline: none;
 }
 
 .contact__message {
@@ -704,11 +709,15 @@ img {
   left: 0;
   bottom: 4.5rem;
   font-size: var(--smaller-font-size);
+  color: var(--text-color);
 }
 
 /*=============== FOOTER ===============*/
 .footer {
   padding-block: 2rem 8rem;
+  text-align: center;
+  color: var(--text-color);
+  font-size: var(--small-font-size);
 }
 
 .footer__container {
@@ -757,9 +766,6 @@ img {
 .footer__copy {
   display: block;
   margin-top: 4.5rem;
-  text-align: center;
-  font-size: var(--small-font-size);
-  color: var(--text-color);
 }
 
 /*=============== SCROLL BAR ===============*/
@@ -793,13 +799,13 @@ img {
   border-radius: 0.5rem;
   z-index: var(--z-tooltip);
   transition: bottom 0.4s, transform 0.4s;
+  cursor: pointer;
 }
 
 .scrollup:hover {
   transform: translateY(-0.5rem);
 }
 
-/* Show Scroll Up */
 .show-scroll {
   bottom: 8rem;
 }
@@ -817,7 +823,7 @@ img {
 }
 
 /* For medium devices */
-@media screen and (min-width: 540px) {
+@media screen and (min-width: 540px) and (max-width: 767px) {
   .nav {
     width: max-content;
   }
@@ -836,38 +842,154 @@ img {
   }
 }
 
-@media screen and (min-width: 768px) {
-  .home__container {
-    grid-template-columns: repeat(2, 350px);
-    align-items: flex-start;
+/* For tablets and small desktops */
+/* Key media query adjusted and detailed for tablet */
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  .container {
+    max-width: 1168px;
+    margin-inline: auto;
   }
-
   
-  .projects__container,
-  .services__container {
-    grid-template-columns: repeat(2, 350px);
+  /* Home container grid to match large desktop */
+  .home__container {
+    display: grid !important;
+    grid-template-columns: 280px 560px 280px !important;
+    gap: 2rem !important;
+    align-items: stretch !important;
   }
-
+  
+  /* Perfil section position and size */
+  .perfil {
+    grid-column: 2 / 3 !important;
+    grid-row: 1 / 3 !important;
+    padding: 2rem !important;
+  }
+  
+  .perfil__data {
+    width: 370px !important;
+    padding: 1.5rem !important;
+    border-radius: 2rem !important;
+  }
+  
+  /* Info section */
+  .info {
+    grid-column: 1 / 2 !important;
+    grid-row: 1 / 2 !important;
+  }
+  .info__name {
+    font-size: var(--h2-font-size) !important;
+  }
+  
+  /* About section */
+  .about {
+    grid-column: 3 / 4 !important;
+    grid-row: 1 / 3 !important;
+    align-content: center !important;
+  }
+  .about__image {
+    height: 210px !important;
+  }
+  .about__img {
+    transform: translateY(-1rem) !important;
+  }
+  
+  /* Skills section */
+  .skills {
+    grid-column: 1 / 2 !important;
+    grid-row: 2 / 3 !important;
+  }
+  .skills__title {
+    font-size: var(--h3-font-size) !important;
+  }
+  
+  /* Projects container - 3 columns */
+  .projects__container {
+    display: grid !important;
+    grid-template-columns: repeat(3, 368px) !important;
+    gap: 2rem !important;
+  }
+  .projects__card {
+    padding-bottom: 2rem !important;
+  }
+  
+  /* Services container - 2 columns */
+  .services__container {
+    display: grid !important;
+    grid-template-columns: repeat(2, 350px) !important;
+    gap: 2rem !important;
+  }
+  .services__card {
+    padding-block: 6rem 5rem !important;
+  }
+  .services__icon i {
+    font-size: 3rem !important;
+  }
+  .services__circle {
+    width: 3.5rem !important;
+    height: 3.5rem !important;
+    right: -1.2rem !important;
+    top: -1.2rem !important;
+  }
+  
+  /* Experience container - 2 columns */
   .experience__container {
-    grid-template-columns: initial;
+    display: grid !important;
+    grid-template-columns: 320px 450px !important;
+    row-gap: 3rem !important;
   }
   .experience__card {
-    grid-template-columns: 320px 380px;
-    align-items: center;
+    grid-template-columns: 300px 380px !important;
+    column-gap: 5rem !important;
+    align-items: center !important;
   }
-  .footer__container,
-  .footer_content {
-    grid-template-columns: repeat(2, max-content);
-    align-items: center;
+  .experience__company {
+    font-size: var(--h2-font-size) !important;
   }
-  .footer__container {
-    justify-content: space-between;
+  .experience__data {
+    padding: 1.8rem !important;
+    border-radius: 1.8rem !important;
   }
-  .footer__content {
-    column-gap: 4.5rem;
+  
+  /* Contact container and form */
+  .contact__container {
+    grid-template-columns: 620px !important;
   }
-  .show-scroll {
-    bottom: 3rem;
+  .contact__group {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .contact__area {
+    height: 15rem !important;
+  }
+  .contact__button {
+    width: max-content !important;
+    justify-self: center !important;
+  }
+  
+  /* Footer adjustments */
+  .footer {
+    padding-top: 3rem !important;
+  }
+  .footer__links {
+    column-gap: 3rem !important;
+  }
+  .footer__copy {
+    margin-top: 7rem !important;
+  }
+  
+  /* Navigation adjustments: keep bottom nav on tablet, aligned centrally */
+  .nav {
+    width: max-content !important;
+    padding: 1rem 2rem !important;
+    left: initial !important;
+    right: 3rem !important;
+    bottom: 1.5rem !important;
+    top: initial !important;
+    margin-inline: auto !important;
+  }
+  .nav__list {
+    flex-direction: row !important;
+    row-gap: 0 !important;
+    column-gap: 1.5rem !important;
   }
 }
 
@@ -926,9 +1048,16 @@ img {
   .skills__title {
     font-size: var(--h3-font-size);
   }
-  .projects__container {
-    grid-template-columns: repeat(3, 368px);
+  .projects__container,
+  .services__container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(300px, 1fr));
     gap: 2rem;
+    width: 100%;
+    max-width: 1120px;      /* matches your home grid max */
+    margin: 2rem auto;      /* centers it below the hero */
+    padding: 0 1rem;
+    box-sizing: border-box;
   }
 
   .projects__card {
@@ -992,6 +1121,7 @@ img {
   }
 }
 @media screen and (min-width: 1500px) {
+  
   .nav {
     width: max-content;
     height: max-content;
@@ -1113,15 +1243,15 @@ img {
     font-size: 0.65rem;
   }
    .perfil {
-    /* go full-width on mobile */
     width: calc(100% - 2rem);
     margin: 2rem auto;
-    grid-template-rows: auto auto; /* shrink image/data, then buttons */
+    grid-template-rows: auto auto;
     border-radius: 10%;
   }
   .perfil__img {
     position: relative;
-    top: auto; left: auto;
+    top: auto;
+    left: auto;
     transform: none;
     width: 100%;
     height: auto;
@@ -1161,11 +1291,12 @@ img {
 }
 
 @keyframes steam {
-  0%   { background-position: 0 0;   }
+  0%   { background-position: 0 0; }
   50%  { background-position: 400% 0; }
-  100% { background-position: 0 0;   }
+  100% { background-position: 0 0; }
 }
 
 .block:after {
   filter: blur(50px);
 }
+
