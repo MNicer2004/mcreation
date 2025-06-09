@@ -114,7 +114,8 @@
   <!--=============== END STATS BOX CSS ===============-->
 </head>
 
-<body>
+<body id="app">
+  
   <!--==================== FIREBASE STATS CONTAINER ====================-->
   <div id="stats-container">
     <!-- Views box -->
@@ -140,7 +141,6 @@
     </div>
   </div>
   <!--==================== END FIREBASE STATS CONTAINER ====================-->
-
   <!--==================== NAV ====================-->
   <nav class="nav">
     <ul class="nav__list">
@@ -190,11 +190,11 @@
           />
 
           <div class="perfil__data">
-            <h1 class="perfil__name">Mcreation <br /> Studio</h1>
+            <!--<h1 class="perfil__name">WELCOME TO<br />MCREATIONSTUDIO</h1>-->
 
             <div class="perfil__buttons">
-              <a href="#projects" class="button">Projects</a>
-              <a href="#services" class="button button__black">Services</a>
+              <a href="#projects" class="button"><span></span><span></span><span></span><span></span>Projects</a>
+              <a href="#services" class="button button__black"><span></span><span></span><span></span><span></span>Services</a>
             </div>
           </div>
         </div>
@@ -203,35 +203,33 @@
         <div class="info">
           <div class="info__data">
             <div class="info__circle"></div>
-            <h1 class="info__name">Mcreation</h1>
+            <h1 class="info__name">MCreation</h1>
           </div>
 
           <div class="info__image">
             <img
-              src="assets/img/home-perfil.png"
+              src="assets/img/logo1.png"
               alt="image"
               class="info__img"
             />
           </div>
 
           <p class="info__description">
-            Passionate about creating and designing<br />
-            websites with the best engaging interfaces.
+            I enjoy creating and designing clean, engaging, and user-friendly interfaces.
           </p>
+          <a href="assets/pdf/Resume.pdf" download target="_blank" class="button">
+  <span></span><span></span><span></span><span></span>
+  Download CV
+</a>
 
-          <a
-            href="assets/pdf/Resume.pdf"
-            download
-            target="_blank"
-            class="button button__black"
-            >Download CV</a
-          >
+</span>
         </div>
 
         <!--===== ABOUT =====-->
         <div class="about">
           <h3 class="about__name">
-            MCREATION – <b>Graphic & 3d Designer</b>
+            <i class="ri-pen-nib-fill"></i>
+              <b>Graphic & 3d Designer</b>
           </h3>
 
           <p class="about__description">
@@ -276,7 +274,7 @@
             to reach out.
           </p>
 
-          <a href="#contact" class="button">Contact Me</a>
+          <a href="#contact" class="button"><span></span><span></span><span></span><span></span>Contact Me</a>
         </div>
 
         <!--===== SKILLS =====-->
@@ -345,10 +343,11 @@
           </div>
 
           <p class="skills__description">
-            I have a wide range of skills in web development and design,
-            including HTML, CSS, JavaScript, React, Git, GitHub, Sass, Tailwind
-            CSS, Figma, and Photoshop. I am always eager to learn new
-            technologies and improve my skills.
+            I work with HTML, CSS, JavaScript, PHP, Java, and Git for development, and use Illustrator, Photoshop, After Effects, Figma, Canva, and Blender for design and creative projects.
+
+
+
+
           </p>
         </div>
       </div>
@@ -362,7 +361,7 @@
         <article class="projects__card">
           <a href="gallery-project1.html" target="_blank" class="projects__image">
             <img
-              src="assets/img/projects-1.jpg"
+              src="assets/img/project-bg1.png"
               alt="image"
               class="projects__img"
             />
@@ -371,8 +370,7 @@
           <div class="projects__data">
             <h3 class="projects__name">ALL PROJECTS</h3>
             <p class="projects__description">
-              Short description of the project that<br />
-              was carried out in this portfolio.
+              A collection of works showcasing different skills and creative outputs.
             </p>
             <div class="projects__skills">
               <img
@@ -427,7 +425,7 @@
         <article class="projects__card">
           <a href="gallery-project2.html" target="_blank" class="projects__image">
             <img
-              src="assets/img/projects-2.jpg"
+              src="assets/img/project-bg2.png"
               alt="image"
               class="projects__img"
             />
@@ -436,8 +434,7 @@
           <div class="projects__data">
             <h3 class="projects__name">GRAPHIC DESIGN</h3>
             <p class="projects__description">
-              Short description of the project that<br />
-              was carried out in this portfolio.
+              Creative visuals crafted for advertisements, promotions, and digital content. 
             </p>
             <div class="projects__skills">
               <img
@@ -477,7 +474,7 @@
         <article class="projects__card">
           <a href="gallery-project3.html" target="_blank" class="projects__image">
             <img
-              src="assets/img/projects-3.jpg"
+              src="assets/img/project-bg3.png"
               alt="image"
               class="projects__img"
             />
@@ -486,8 +483,7 @@
           <div class="projects__data">
             <h3 class="projects__name">3D MODELING</h3>
             <p class="projects__description">
-              Short description of the project that<br />
-              was carried out in this portfolio.
+Projects featuring detailed 3D assets and digital object creation.
             </p>
             <div class="projects__skills">
               <img
@@ -522,7 +518,7 @@
         <article class="projects__card">
           <a href="gallery-project4.html" target="_blank" class="projects__image">
             <img
-              src="assets/img/projects-4.jpg"
+              src="assets/img/project-bg4.png"
               alt="image"
               class="projects__img"
             />
@@ -531,8 +527,7 @@
           <div class="projects__data">
             <h3 class="projects__name">3D ANIMATION</h3>
             <p class="projects__description">
-              Short description of the project that<br />
-              was carried out in this portfolio.
+              Animated presentations that highlight product features, form, and function.
             </p>
             <div class="projects__skills">
               <img
@@ -582,7 +577,7 @@
             <i class="ri-box-3-line"></i>
           </div>
 
-          <h3 class="services__name">3d</h3>
+          <h3 class="services__name">Graphic Design</h3>
           <p class="services__description">
             Short description of the service offered to users to obtain a
             personalized project.
@@ -595,7 +590,7 @@
             <i class="ri-pen-nib-line"></i>
           </div>
 
-          <h3 class="services__name">TEXTT</h3>
+          <h3 class="services__name">Product Design</h3>
           <p class="services__description">
             Short description of the service offered to users to obtain a
             personalized project.
@@ -608,7 +603,7 @@
             <i class="ri-seo-line"></i>
           </div>
 
-          <h3 class="services__name"></h3>
+          <h3 class="services__name">3d Model</h3>
           <p class="services__description">
             Short description of the service offered to users to obtain a
             personalized project.
@@ -621,7 +616,7 @@
             <i class="ri-seo-line"></i>
           </div>
 
-          <h3 class="services__name"></h3>
+          <h3 class="services__name">3d Animation</h3>
           <p class="services__description">
             Short description of the service offered to users to obtain a
             personalized project.
