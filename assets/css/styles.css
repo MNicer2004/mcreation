@@ -1,10 +1,11 @@
 /*=============== GOOGLE FONTS ===============*/
-@import url("https://fonts.googleapis.com/css2?family=Grechen+Fuemen&family=Montserrat+Alternates:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
 
 /*=============== VARIABLES CSS ===============*/
 :root {
   /*========== Colors ==========*/
-  --hue: 265;
+  --hue: 21;
   --first-color: hsl(var(--hue), 80%, 49%);
   --first-color-alt: hsl(var(--hue), 76%, 45%);
   --white-color: hsl(0, 0%, 98%);
@@ -21,8 +22,8 @@
   --pulse-scale: 1.2;
 
   /*========== Font and typography ==========*/
-  --body-font: "Montserrat Alternates", sans-serif;
-  --second-font: "Grechen Fuemen", cursive;
+  --body-font: "Poppins", sans-serif;
+  --second-font: "Poppins", sans-serif;
   --biggest-font-size: 2.5rem;
   --h1-font-size: 1.5rem;
   --h2-font-size: 1.25rem;
@@ -173,22 +174,20 @@ img {
 
 /*=============== HOME ===============*/
 /*===== PERFIL =====*/
-.perfil {
-  position: relative;
-  background: var(--conic-gradient);
-  height: 415px;
-  border-radius: 2rem;
-  padding: 1rem;
-  display: grid;
-  overflow: hidden;
-}
 
 .perfil__img {
-  width: 50px;
-  position: absolute;
-  justify-self: center;
-  align-self: flex-end;
+  position: absolute;       /* keep it positioned over the card */
+  top: 50%;                 /* center vertically */
+  left: 50%;                /* center horizontally */
+  transform: translate(-50%, -50%);
+  border-radius: inherit;
+  height: 100%;             /* fill the container’s height */
+  width: auto;              /* auto width to preserve aspect ratio */
+
+  object-fit: cover;        /* maintain ratio, crop only top/bottom if needed */
+  object-position: center;  /* center the crop */
 }
+
 
 .perfil__data {
   align-self: flex-end;
@@ -205,16 +204,85 @@ img {
   margin-bottom: 1rem;
 }
 
+
+
+.perfil__buttons .button {
+  padding: 0.75rem 0;
+}
+/* ── FORCE DARK FILL + VISIBLE OVERFLOW ── */
+/* ─── PERFIL BORDER (sharp + blur) ─── */
+/* ───────── PERFIL: ORANGE FILL + BORDER-ONLY ORANGE→YELLOW ANIMATION ───────── */
+.perfil {
+  position: relative;
+  background: var(--first-color-alt); /* your orange fill */
+  border-radius: 2rem;
+  overflow: visible;                  /* allow the glow out */
+  z-index: 0;
+  display: grid !important;
+  grid-template-rows: 1fr auto !important; /* content above, buttons below */
+}
+
+
+/* sharp orange→yellow border */
+.perfil::before {
+  content: '';
+  position: absolute;
+  inset: 0;                     /* cover the card exactly */
+  padding: 2px;                 /* border thickness */
+  border-radius: inherit;
+
+  /* two backgrounds:
+     1) a solid orange padding-box
+     2) an animated orange→yellow border-box */
+  background:
+    linear-gradient(var(--first-color-alt), var(--first-color-alt)) padding-box,
+    linear-gradient(
+      45deg,
+      var(--first-color-alt),
+      #ffeb3b,
+      var(--first-color-alt)
+    ) border-box;
+
+  background-origin: padding-box, border-box;
+  background-clip:  padding-box, border-box;
+  background-size: 200% 200%;   /* make it “wider” to animate */
+  animation: steam 6s linear infinite;
+  z-index: -1;                   /* under the card’s content */
+}
+
+/* soft glow of the same gradient */
+.perfil::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  border-radius: inherit;
+  background:
+    linear-gradient(
+      45deg,
+      var(--first-color-alt),
+      #ff0000,
+      var(--first-color-alt),
+       #ffd900,
+      var(--first-color-alt)
+    );
+  background-size: 200% 200%;
+  animation: steam 6s linear infinite;
+  filter: blur(30px);
+  opacity: 0.6;
+  z-index: -2;                   /* behind everything */
+}
+
+@keyframes steam {
+  0%   { background-position:   0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position:   0% 50%; }
+}
 .perfil__buttons {
   display: grid;
   column-gap: 0.5rem;
   grid-template-columns: repeat(2, 1fr);
 }
-
-.perfil__buttons .button {
-  padding: 0.75rem 0;
-}
-
 /*===== INFO & ABOUT & SKILLS =====*/
 .info,
 .about,
@@ -232,7 +300,7 @@ img {
 }
 
 .info__name {
-  font: var(--font-regular) var(--h1-font-size) var(--second-font);
+  font: var(--font-semi-bold) var(--h1-font-size) var(--second-font);
 }
 
 .info__data {
@@ -336,24 +404,113 @@ img {
 }
 
 /*=============== BUTTON ===============*/
+/* ==============================================
+   BUTTON CORNER ANIMATION (applies to .button)
+   ============================================== */
+
+/* ─── GLOBAL BUTTON EDGE ANIMATION ─── */
+/* ───────── BUTTON EDGE ANIMATION ───────── */
+/* ───────────────────────────────────────────────
+/*────────────────────────────────────
+  BUTTON CONIC-GRADIENT WRAPPER
+────────────────────────────────────*/
+
+/*──────────────────────────────────────────
+  ANIMATED ROUNDED BORDER FOR .animate-border
+──────────────────────────────────────────*/
+/* ───────── BUTTON BASE ───────── */
 .button {
-  display: inline-flex;
-  justify-content: center;
-  background-color: var(--first-color);
-  color: var(--white-color);
-  font-weight: var(--font-semi-bold);
-  padding: 1.25rem 2.5rem;
-  border-radius: 4rem;
-  transition: background-color 0.4s;
+  text-align: center;
+  position: relative;
+  display: inline-block;
+  padding: .75rem 2rem;             /* pill sizing */
+  background: #272727;               /* dark gray/black interior */
+  color: #fff;
+  font-size: 1rem;
+                /* keeps the pill shape */
+  overflow: hidden;                  /* clip the animated spans */
+  text-decoration: none;
+  font-weight: 500;
 }
 
-.button__black {
-  background-color: var(--black-color);
+/* ───────── INNER SHEEN (optional) ───────── */
+.button::before {
+  content: '';
+  position: absolute;
+  top: 2px; left: 2px; bottom: 2px;
+  width: 50%;
+  background: rgba(255,255,255,0.05);
+  pointer-events: none;
 }
 
+/* ───────── ANIMATED ORANGE EDGES ───────── */
+/* top edge */
+.button span:nth-of-type(1) {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 2px;
+  background: linear-gradient(
+    to right,
+    var(--first-color),      /* main orange */
+    var(--first-color-alt)   /* lighter orange */
+  );
+  animation: edgeX 2s linear infinite;
+}
+
+/* right edge */
+.button span:nth-of-type(2) {
+  position: absolute;
+  top: 0; right: 0;
+  width: 2px; height: 100%;
+  background: linear-gradient(
+    to bottom,
+    var(--first-color),
+    var(--first-color-alt)
+  );
+  animation: edgeY 2s linear infinite 0.5s;
+}
+
+/* bottom edge */
+.button span:nth-of-type(3) {
+  position: absolute;
+  bottom: 0; right: 0;
+  width: 100%; height: 2px;
+  background: linear-gradient(
+    to left,
+    var(--first-color),
+    var(--first-color-alt)
+  );
+  animation: edgeX 2s linear infinite reverse 1s;
+}
+
+/* left edge */
+.button span:nth-of-type(4) {
+  position: absolute;
+  top: 0; left: 0;
+  width: 2px; height: 100%;
+  background: linear-gradient(
+    to top,
+    var(--first-color),
+    var(--first-color-alt)
+  );
+  animation: edgeY 2s linear infinite reverse 1.5s;
+}
+
+/* ───────── KEYFRAMES ───────── */
+@keyframes edgeX {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%);  }
+}
+@keyframes edgeY {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(100%);  }
+}
+
+/* ───────── HOVER STATE ───────── */
 .button:hover {
-  background-color: var(--first-color-alt);
+  background: #1f1f1f;              /* slightly darker on hover */
 }
+
 
 /*=============== PROJECTS (cards) ===============*/
 .projects__card {
@@ -678,15 +835,14 @@ img {
     justify-content: center;
   }
 }
+
 @media screen and (min-width: 768px) {
   .home__container {
     grid-template-columns: repeat(2, 350px);
     align-items: flex-start;
   }
 
-  .perfil {
-    height: 100%;
-  }
+  
   .projects__container,
   .services__container {
     grid-template-columns: repeat(2, 350px);
@@ -739,9 +895,7 @@ img {
     grid-row: 1 / 3;
     padding: 2rem;
   }
-  .perfil__img {
-    width: 450px;
-  }
+  
   .perfile__data {
     width: 370px;
     padding: 1.5rem;
@@ -958,4 +1112,60 @@ img {
   .stat-label {
     font-size: 0.65rem;
   }
+   .perfil {
+    /* go full-width on mobile */
+    width: calc(100% - 2rem);
+    margin: 2rem auto;
+    grid-template-rows: auto auto; /* shrink image/data, then buttons */
+    border-radius: 10%;
+  }
+  .perfil__img {
+    position: relative;
+    top: auto; left: auto;
+    transform: none;
+    width: 100%;
+    height: auto;
+  }
+  .perfil__buttons {
+    margin-top: 1rem;
+  }
+}
+
+/* ————————————————————————
+   RAINBOW BORDER ANIMATION
+   ———————————————————————— */
+.block {
+  position: relative;
+  margin: 300px auto 0;
+  width: 500px;
+  height: 250px;
+  background: linear-gradient(0deg, #000, #272727);
+}
+
+.block:before,
+.block:after {
+  content: '';
+  position: absolute;
+  left: -2px;
+  top: -2px;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  background: linear-gradient(
+    45deg,
+    #fb0094, #0000ff, #00ff00, #ffff00, #ff0000,
+    #fb0094, #0000ff, #00ff00, #ffff00, #ff0000
+  );
+  background-size: 400%;
+  z-index: -1;
+  animation: steam 20s linear infinite;
+}
+
+@keyframes steam {
+  0%   { background-position: 0 0;   }
+  50%  { background-position: 400% 0; }
+  100% { background-position: 0 0;   }
+}
+
+.block:after {
+  filter: blur(50px);
 }
