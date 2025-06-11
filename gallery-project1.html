@@ -66,16 +66,17 @@
     }
 
     .company-gallery {
-      display: none; margin-bottom: 2rem;
-    }
-    .company-gallery.active {
-      display: block;
-      animation: fadeIn 0.5s ease forwards;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    display: none;
+    margin-bottom: 2rem;
+  }
+  .company-gallery.active {
+    display: block;
+    /* animation: fadeIn 0.5s ease forwards; */
+  }
+      @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
     .company-gallery h3 {
       font-size: var(--h2-font-size); margin-bottom: 0.5rem;
     }
@@ -87,7 +88,7 @@
       display: grid; gap: 1rem;
       grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     }
-     @media screen and (min-width: 300px) {
+    @media screen and (min-width: 300px) {
       .gallery__grid { grid-template-columns: repeat(3, 1fr); }
     }
     @media screen and (min-width: 600px) {
@@ -104,7 +105,7 @@
       object-fit: cover;
       cursor: pointer;
       transition: transform 0.2s ease;
-      aspect-ratio: 1/1;    /* square thumbnails */
+      aspect-ratio: 1/1;
     }
     .gallery__media:hover,
     .gallery__video:hover {
@@ -112,18 +113,16 @@
     }
 
     .lightbox {
-      position: fixed; top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      background-color: rgba(0,0,0,0.8);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 2000;
-      padding: 1rem;
-    }
-    .lightbox.active {
-      display: flex; animation: fadeIn 0.3s ease forwards;
-    }
+    position: fixed; inset: 0;
+    background-color: rgba(0,0,0,0.8);
+    display: none;
+    align-items: center; justify-content: center;
+    z-index: 2000; padding: 1rem;
+  }
+  .lightbox.active {
+    display: flex;
+    /* animation: fadeIn 0.3s ease forwards; */
+  }
     .lightbox-img {
       max-width: 90%; max-height: 90%;
       border-radius: 0.75rem;
@@ -183,15 +182,15 @@
     <!-- Filter Buttons -->
     <div class="filter-bar">
       <button class="filter-button active" data-company="personal">Graphic Design</button>
-      <button class="filter-button" data-company="graphic-design">3D Modeling</button>
-      <button class="filter-button" data-company="3d-modeling">3D Animation</button>
-      <button class="filter-button" data-company="3d-animation">App Design & Development</button>
+      <button class="filter-button" data-company="3d-modeling">3D Modeling</button>
+      <button class="filter-button" data-company="3d-animation">3D Animation</button>
+      <button class="filter-button" data-company="appdev">App Design & Development</button>
     </div>
 
     <div class="section-fill">
-      <!-- Graphic Design Personal-->
+      <!-- Graphic Design - Personal Works -->
       <div class="company-gallery active" data-company="personal">
-        <h3>Personal Works</h3>
+        <h3>Personal Projects</h3>
         <p>Some of my personal works outside of client projects.</p>
         <div class="gallery__grid">
           <img src="assets/img/personal/Burger King Banner F.png" alt="Personal 0" class="gallery__media"/>
@@ -201,85 +200,108 @@
           <img src="assets/img/personal/4.png" alt="Personal 4" class="gallery__media"/>
           <img src="assets/img/personal/5.png" alt="Personal 5" class="gallery__media"/>
           <img src="assets/img/personal/6.png" alt="Personal 6" class="gallery__media"/>
-          <img src="assets/img/personal/12345.png" alt="Personal 6" class="gallery__media"/>
-
-
-          <img src="assets/img/PN.png" alt="Personal 7" class="gallery__media"/>
-          <img src="assets/img/OR.png" alt="Personal 7" class="gallery__media"/>
-          <img src="assets/img/honeyposter.png" alt="Personal 7" class="gallery__media"/>
-
-          <img src="assets/img/personal/CAROUSEL-GYM2.png" alt="Personal 7" class="gallery__media"/>
-          <img src="assets/img/personal/d.png" alt="Personal 8" class="gallery__media"/>
-          <img src="assets/img/personal/jersey1.png" alt="Personal 9" class="gallery__media"/>
-          <img src="assets/img/personal/jersey2.png" alt="Personal 10" class="gallery__media"/>
-          <img src="assets/img/personal/JERSEY3.png" alt="Personal 11" class="gallery__media"/>
-          <img src="assets/img/personal/jersey4.png" alt="Personal 12" class="gallery__media"/>
-          <img src="assets/img/personal/sundae.png" alt="Personal 13" class="gallery__media"/>
-          <img src="assets/img/personal/j.png" alt="Personal 14" class="gallery__media"/>
-          <img src="assets/img/personal/thu.png" alt="Personal 15" class="gallery__media"/>
+          <img src="assets/img/personal/12345.png" alt="Personal 7" class="gallery__media"/>
+          <img src="assets/img/PN.png" alt="Personal 8" class="gallery__media"/>
+          <img src="assets/img/OR.png" alt="Personal 9" class="gallery__media"/>
+          <img src="assets/img/honeyposter.png" alt="Personal 10" class="gallery__media"/>
+          <img src="assets/img/personal/CAROUSEL-GYM2.png" alt="Personal 11" class="gallery__media"/>
+          <img src="assets/img/personal/d.png" alt="Personal 12" class="gallery__media"/>
+          <img src="assets/img/personal/jersey1.png" alt="Personal 13" class="gallery__media"/>
+          <img src="assets/img/personal/jersey2.png" alt="Personal 14" class="gallery__media"/>
+          <img src="assets/img/personal/JERSEY3.png" alt="Personal 15" class="gallery__media"/>
+          <img src="assets/img/personal/jersey4.png" alt="Personal 16" class="gallery__media"/>
+          <img src="assets/img/personal/sundae.png" alt="Personal 17" class="gallery__media"/>
+          <img src="assets/img/personal/j.png" alt="Personal 18" class="gallery__media"/>
+          <img src="assets/img/personal/thu.png" alt="Personal 19" class="gallery__media"/>
         </div>
-        <!-- PetbLOOM-->
-        <div class="company-gallery active" data-company="personal">
-        <h3><br>PetBloom</h3>
+      </div>
+
+      <!-- Graphic Design - PetBloom -->
+      <div class="company-gallery active" data-company="personal">
+        <h3>PetBloom</h3>
         <p>These are my graphic design works for Petbloom. The images shown are selected.</p>
         <div class="gallery__grid">
-          <img src="assets/img/petbloom/1.1 - Headline1.png" alt="Personal 0" class="gallery__media"/>
-          <img src="assets/img/petbloom/1.png" alt="Personal 1" class="gallery__media"/>
-          <img src="assets/img/petbloom/2.png" alt="Personal 2" class="gallery__media"/>
-          <img src="assets/img/petbloom/PetBloom1.png" alt="Personal 3" class="gallery__media"/>
-          <img src="assets/img/petbloom/pb20.png" alt="Personal 4" class="gallery__media"/>
-          <img src="assets/img/petbloom/pb21.png" alt="Personal 5" class="gallery__media"/>
-          <img src="assets/img/petbloom/pb22.png" alt="Personal 6" class="gallery__media"/>
-          <img src="assets/img/petbloom/pb23.png" alt="Personal 7" class="gallery__media"/>
-          <img src="assets/img/petbloom/pb24.png" alt="Personal 8" class="gallery__media"/>
-          <img src="assets/img/petbloom/pb25.png" alt="Personal 9" class="gallery__media"/>
-          <img src="assets/img/petbloom/pb1.png" alt="Personal 10" class="gallery__media"/>
-          <img src="assets/img/petbloom/pb2.png" alt="Personal 11" class="gallery__media"/>
-          <img src="assets/img/petbloom/pb3.png" alt="Personal 12" class="gallery__media"/>
-          <img src="assets/img/petbloom/pb4.png" alt="Personal 13" class="gallery__media"/>
-          <img src="assets/img/petbloom/pb5.png" alt="Personal 14" class="gallery__media"/>
-          <img src="assets/img/petbloom/pb6.png" alt="Personal 15" class="gallery__media"/>
-          <img src="assets/img/petbloom/pb7.png" alt="Personal 16" class="gallery__media"/>
-          <img src="assets/img/petbloom/pb8.png" alt="Personal 17" class="gallery__media"/>
-          <img src="assets/img/petbloom/pb9.png" alt="Personal 18" class="gallery__media"/>
-          <img src="assets/img/petbloom/pb10.png" alt="Personal 18" class="gallery__media"/>
-          <img src="assets/img/petbloom/pb11.png" alt="Personal 18" class="gallery__media"/>
-          <img src="assets/img/petbloom/pb12.png" alt="Personal 18" class="gallery__media"/>
-          <img src="assets/img/petbloom/pb13.png" alt="Personal 18" class="gallery__media"/>
-          <img src="assets/img/petbloom/pb14.png" alt="Personal 18" class="gallery__media"/>
-          <img src="assets/img/petbloom/pb15.png" alt="Personal 18" class="gallery__media"/>
-          <img src="assets/img/petbloom/pb16.png" alt="Personal 18" class="gallery__media"/>
-          <img src="assets/img/petbloom/pb17.png" alt="Personal 18" class="gallery__media"/>
-          <img src="assets/img/petbloom/pb18.png" alt="Personal 18" class="gallery__media"/>
-          <img src="assets/img/petbloom/pb19.png" alt="Personal 18" class="gallery__media"/>
+          <img src="assets/img/petbloom/1.1 - Headline1.png" alt="PetBloom 0" class="gallery__media"/>
+          <img src="assets/img/petbloom/1.png" alt="PetBloom 1" class="gallery__media"/>
+          <img src="assets/img/petbloom/2.png" alt="PetBloom 2" class="gallery__media"/>
+          <img src="assets/img/petbloom/PetBloom1.png" alt="PetBloom 3" class="gallery__media"/>
+          <img src="assets/img/petbloom/pb20.png" alt="PetBloom 4" class="gallery__media"/>
+          <img src="assets/img/petbloom/pb21.png" alt="PetBloom 5" class="gallery__media"/>
+          <img src="assets/img/petbloom/pb22.png" alt="PetBloom 6" class="gallery__media"/>
+          <img src="assets/img/petbloom/pb23.png" alt="PetBloom 7" class="gallery__media"/>
+          <img src="assets/img/petbloom/pb24.png" alt="PetBloom 8" class="gallery__media"/>
+          <img src="assets/img/petbloom/pb25.png" alt="PetBloom 9" class="gallery__media"/>
+          <img src="assets/img/petbloom/pb1.png" alt="PetBloom 10" class="gallery__media"/>
+          <img src="assets/img/petbloom/pb2.png" alt="PetBloom 11" class="gallery__media"/>
+          <img src="assets/img/petbloom/pb3.png" alt="PetBloom 12" class="gallery__media"/>
+          <img src="assets/img/petbloom/pb4.png" alt="PetBloom 13" class="gallery__media"/>
+          <img src="assets/img/petbloom/pb5.png" alt="PetBloom 14" class="gallery__media"/>
+          <img src="assets/img/petbloom/pb6.png" alt="PetBloom 15" class="gallery__media"/>
+          <img src="assets/img/petbloom/pb7.png" alt="PetBloom 16" class="gallery__media"/>
+          <img src="assets/img/petbloom/pb8.png" alt="PetBloom 17" class="gallery__media"/>
+          <img src="assets/img/petbloom/pb9.png" alt="PetBloom 18" class="gallery__media"/>
+          <img src="assets/img/petbloom/pb10.png" alt="PetBloom 19" class="gallery__media"/>
+          <img src="assets/img/petbloom/pb11.png" alt="PetBloom 20" class="gallery__media"/>
+          <img src="assets/img/petbloom/pb12.png" alt="PetBloom 21" class="gallery__media"/>
+          <img src="assets/img/petbloom/pb13.png" alt="PetBloom 22" class="gallery__media"/>
+          <img src="assets/img/petbloom/pb14.png" alt="PetBloom 23" class="gallery__media"/>
+          <img src="assets/img/petbloom/pb15.png" alt="PetBloom 24" class="gallery__media"/>
+          <img src="assets/img/petbloom/pb16.png" alt="PetBloom 25" class="gallery__media"/>
+          <img src="assets/img/petbloom/pb17.png" alt="PetBloom 26" class="gallery__media"/>
+          <img src="assets/img/petbloom/pb18.png" alt="PetBloom 27" class="gallery__media"/>
+          <img src="assets/img/petbloom/pb19.png" alt="PetBloom 28" class="gallery__media"/>
         </div>
+      </div>
 
-        <!-- THG-->
+      <!-- Graphic Design - TheHoopGang -->
       <div class="company-gallery active" data-company="personal">
-        <h3><br>TheHoopGang</h3>
+        <h3>TheHoopGang</h3>
         <p>To be uploaded soon..</p>
         <div class="gallery__grid">
-          <img src=" " alt="THG" class="gallery__media"/>
-    
+          <img src="" alt="THG" class="gallery__media"/>
         </div>
       </div>
 
       <!-- 3D Modeling -->
-      <div class="company-gallery" data-company="graphic-design">
-        <h3>Graphic Modeling</h3>
-        <p>Work done as a graphic designer.</p>
+      <div class="company-gallery" data-company="3d-modeling">
+        <h3>Personal Projects</h3>
+        <p></p>
         <div class="gallery__grid">
-          <img src="assets/img/projects-1.jpg" alt="Design 1" class="gallery__media"/>
-          <img src="assets/img/projects-2.jpg" alt="Design 2" class="gallery__media"/>
-          <img src="assets/img/projects-3.jpg" alt="Design 3" class="gallery__media"/>
-          <img src="assets/img/projects-4.jpg" alt="Design 4" class="gallery__media"/>
-          <img src="assets/img/projects-5.jpg" alt="Design 5" class="gallery__media"/>
-          <img src="assets/img/projects-6.jpg" alt="Design 6" class="gallery__media"/>
+          <img src="assets/img/3d-img/3d-1.png" alt="Design 1" class="gallery__media"/>
+          <img src="assets/img/3d-img/3d-2.png" alt="Design 2" class="gallery__media"/>
+          <img src="assets/img/3d-img/3d-3.png" alt="Design 3" class="gallery__media"/>
+          <img src="assets/img/3d-img/3d-4.png" alt="Design 4" class="gallery__media"/>
+          <img src="assets/img/3d-img/3d-5.png" alt="Design 5" class="gallery__media"/>
+          <img src="assets/img/3d-img/3d-6.png" alt="Design 6" class="gallery__media"/>
+          <img src="assets/img/3d-img/3d-7.png" alt="Design 7" class="gallery__media"/>
+          <img src="assets/img/3d-img/3d-8.png" alt="Design 8" class="gallery__media"/>
+          <img src="assets/img/3d-img/3d-9.png" alt="Design 9" class="gallery__media"/>
+          <img src="assets/img/3d-img/3d-10.png" alt="Design 10" class="gallery__media"/>
+          <img src="assets/img/3d-img/3d-11.png" alt="Design 11" class="gallery__media"/>
+          <img src="assets/img/3d-img/3d-12.png" alt="Design 12" class="gallery__media"/>
+          <img src="assets/img/3d-img/3d-13.png" alt="Design 13" class="gallery__media"/>
+          <img src="assets/img/3d-img/3d-14.png" alt="Design 14" class="gallery__media"/>
+          <img src="assets/img/3d-img/3d-15.png" alt="Design 15" class="gallery__media"/>
+          <img src="assets/img/3d-img/3d-16.png" alt="Design 16" class="gallery__media"/>
+          <img src="assets/img/3d-img/3d-17.png" alt="Design 17" class="gallery__media"/>
+          <img src="assets/img/3d-img/3d-18.png" alt="Design 18" class="gallery__media"/>
+          <img src="assets/img/3d-img/3d-19.png" alt="Design 19" class="gallery__media"/>
+          <img src="assets/img/3d-img/3d-20.png" alt="Design 20" class="gallery__media"/>
+          <img src="assets/img/3d-img/3d-21.png" alt="Design 21" class="gallery__media"/>
+          <img src="assets/img/3d-img/3d-22.png" alt="Design 21" class="gallery__media"/>
+          <img src="assets/img/3d-img/3d-23.png" alt="Design 21" class="gallery__media"/>
+          <img src="assets/img/3d-img/3d-24.png" alt="Design 21" class="gallery__media"/>
+          <img src="assets/img/3d-img/3d-25.png" alt="Design 21" class="gallery__media"/>
+          <img src="assets/img/3d-img/3d-26.png" alt="Design 21" class="gallery__media"/>
+          <img src="assets/img/3d-img/3d-27.png" alt="Design 21" class="gallery__media"/>
+          <img src="assets/img/3d-img/3d-28.png" alt="Design 21" class="gallery__media"/>
+          <img src="assets/img/3d-img/3d-29.png" alt="Design 21" class="gallery__media"/>
+          <img src="assets/img/3d-img/3d-30.png" alt="Design 21" class="gallery__media"/>
         </div>
       </div>
 
       <!-- 3D Animation -->
-      <div class="company-gallery" data-company="3d-modeling">
+      <div class="company-gallery" data-company="3d-animation">
         <h3>3D Animation</h3>
         <p>Work done in 3D modeling projects.</p>
         <div class="gallery__grid">
@@ -293,7 +315,7 @@
       </div>
 
       <!-- App Design & Development -->
-      <div class="company-gallery" data-company="3d-animation">
+      <div class="company-gallery" data-company="appdev">
         <h3>App Design & Development</h3>
         <p>3D animation work.</p>
         <div class="gallery__grid">
@@ -305,6 +327,7 @@
           <img src="assets/img/anims-6.gif" alt="Animation 6" class="gallery__media"/>
         </div>
       </div>
+
     </div>
   </main>
 
@@ -323,7 +346,7 @@
   <a href="#" class="scrollup" id="scroll-up"><i class="ri-arrow-up-line"></i></a>
 
   <!-- SCRIPTS -->
-  <script src="assets/js/scrollreveal.min.js"></script>
+  <!--<script src="assets/js/scrollreveal.min.js"></script>-->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const filterButtons = document.querySelectorAll('.filter-button');
@@ -336,8 +359,9 @@
 
           btn.classList.add('active');
           const choice = btn.dataset.company;
-          const target = document.querySelector(`.company-gallery[data-company="${choice}"]`);
-          if (target) target.classList.add('active');
+          const targets = document.querySelectorAll(`.company-gallery[data-company="${choice}"]`);
+
+          targets.forEach(t => t.classList.add('active'));
         });
       });
 
@@ -372,8 +396,9 @@
         else scrollUpEl.classList.remove('show-scroll');
       });
 
-      // Initialize on “Personal Projects”
-      document.querySelector('.company-gallery[data-company="personal"]').classList.add('active');
+      // Show all Graphic Design (personal) galleries on load
+      document.querySelectorAll('.company-gallery[data-company="personal"]')
+              .forEach(g => g.classList.add('active'));
     });
   </script>
 </body>
