@@ -80,3 +80,20 @@ sr.reveal(`.projects__card, .services__card, .experience__card`, { interval: 100
 // New reveals for gallery content and images:
 sr.reveal(`.gallery__content`, { origin: 'bottom', distance: '40px', delay: 300 });
 sr.reveal(`.gallery__img`, { scale: 0.85, interval: 100, delay: 400 });
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const counters = document.querySelectorAll(".stats__number");
+  counters.forEach(counter => {
+    const target = +counter.dataset.target;
+    const duration = 1500;        // total animation duration (ms)
+    const stepTime = Math.abs(Math.floor(duration / target));
+    let current = 0;
+    const timer = setInterval(() => {
+      current += 1;
+      counter.textContent = current >= target ? target : current;
+      if (current >= target) clearInterval(timer);
+    }, stepTime);
+  });
+});

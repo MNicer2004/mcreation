@@ -55,6 +55,33 @@
   }
 }
 
+/*—————————————————————————————————————————
+  PROJECTS: FIX ALL-PROJECTS LAYOUT + GLOW ONLY VIA BOX-SHADOW
+—————————————————————————————————————————*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*=============== BASE ===============*/
 * {
   box-sizing: border-box;
@@ -132,6 +159,88 @@ img {
 .main {
   overflow: hidden;
 }
+/* ——— Stats Cards ——— */
+/* ——— Stats Cards ——— */
+#stats {
+  /* semi-transparent dark overlay + heavy blur behind */
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 3rem 1rem;      /* more breathing room */
+  border-radius: 2rem;
+  margin: 2rem;            /* separate from other sections */
+}
+.stats__container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 0;
+}
+
+/* Card base */
+.stats__card {
+  flex: 0 1 260px;         /* base width = 260px, but shrink/grow if needed */
+  width: 280px;
+  height: 140px;
+  padding: 1rem 1.5rem;  /* a little extra padding */
+  position: relative;
+  background: #1a1a1f;     /* keep your dark “canvas” */
+  border-radius: 2rem;
+  
+  /* glowing outline */
+  border: 2px solid var(--first-color-alt);
+  box-shadow:
+    0 0 10px var(--first-color-alt),
+    0 0 20px var(--first-color),
+    inset 0 0 5px rgba(0,0,0,0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover “pop” */
+.stats__card:hover {
+  transform: scale(1.05);
+  box-shadow:
+    0 0 20px var(--first-color-alt),
+    0 0 40px var(--first-color),
+    inset 0 0 8px rgba(0,0,0,0.6);
+}
+
+/* Rotating radial glow */
+.stats__card::before {
+  display: none !important;
+  /* if you ever want to keep it but just stop the spin, you could do:
+     animation: none !important;
+     background: none !important;
+  */
+}
+
+@keyframes rotateGlow {
+  from   { transform: translate(0,0) rotate(   0deg) }
+  to     { transform: translate(0,0) rotate(360deg) }
+}
+
+/* Number styling with gradient text */
+.stats__number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(90deg,
+    var(--first-color),
+    var(--first-color-alt)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+}
+
+/* Label */
+.stats__label {
+  font-size: var(--small-font-size);
+  color: var(--text-color);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
 
 /*=============== NAV ===============*/
 .nav {
@@ -362,11 +471,19 @@ img {
   display: grid;
   overflow: hidden;
 }
-
-.about__img {
-  width: 250px;
-  justify-self: center;
-  transform: translateY(-2.5rem);
+.about__image img.about__img {
+  position: absolute !important;
+  top: 50%   !important;
+  left: 50%  !important;
+  transform: translate(-50%, -50%) !important;
+  width: 100%   !important;
+  height: 100%  !important;
+  object-fit: cover;
+  object-position: center;
+}
+.about__image {
+  position: relative;
+  overflow: hidden; /* you already have this, but just in case */
 }
 
 .about__note {
@@ -873,9 +990,21 @@ img {
     font-size: 1.25rem;
     line-height: 1.2;
   }
-
+.projects__container {
+    display: flex !important;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;            /* match your existing gap at this breakpoint */
+    margin: 2rem auto 0;  /* keep your vertical spacing & centering */
+    padding: 0 1rem;      /* optional: match your other section padding */
+    max-width: none;      /* override any earlier max-width if needed */
+  }
+  .projects__card {
+    /* carve the row into 3 equal slots (2 gaps of 1rem each) */
+    flex: 0 0 calc((100% - 2rem) / 3);
+    max-width: calc((100% - 2rem) / 3);
+  }
   /* WORKS/PROJECTS & SERVICES: exactly 2 cards per row */
-  .projects__container,
   .services__container {
     display: grid;
     grid-template-columns: repeat(2, minmax(150px, 1fr));
@@ -904,9 +1033,26 @@ img {
     align-items: center;
   }
 }
+/*────────────────────────────────────────────────────────
+  PERFIL: RESTORE DESKTOP-STYLE CARD ON SMALL SCREENS
+────────────────────────────────────────────────────────*/
 
 
 
+
+@media screen and (max-width: 1024px) {
+  .about__image {
+    height: auto !important; /* let it grow to the image’s natural height */
+  }
+  .about__image img.about__img {
+    position: relative  !important;
+    top: auto          !important;
+    left: auto         !important;
+    transform: none    !important;
+    width: 100%        !important;
+    height: auto       !important;
+  }
+}
 /* For large devices */
 @media screen and (min-width: 1200px) {
   .container {
@@ -962,7 +1108,14 @@ img {
   .skills__title {
     font-size: var(--h3-font-size);
   }
-  .projects__container,
+.projects__container {
+    gap: 2rem;
+  }
+  .projects__card {
+    /* now 2 gaps of 2rem each */
+    flex: 0 0 calc((100% - 24rem) / 3);
+    max-width: calc((100% - 54rem) / 2);
+  }
   .services__container {
     display: grid;
     grid-template-columns: repeat(2, minmax(400px, 1fr));
@@ -974,9 +1127,7 @@ img {
     box-sizing: border-box;
   }
 
-  .projects__card {
-    padding-bottom: 2rem;
-  }
+ 
   .services__card {
     padding-block: 6rem 5rem;
   }
@@ -1139,40 +1290,62 @@ img {
 }
 
 /* On very small screens, shrink further */
+/*────────────────────────────────────────────────────────
+  PERFIL: DESKTOP/TABLET–STYLE IMAGE ON MOBILE
+────────────────────────────────────────────────────────*/
 @media screen and (max-width: 600px) {
-  .stat-box {
-    padding: 0.4rem 0.6rem;
-    gap: 0.4rem;
+  /* 1) Card container: 4:5 ratio, centered, keep the animated glow */
+  .home__container .perfil {
+    width: 90vw !important;                 /* almost full-width */
+    max-width: none !important;             /* lift any earlier cap */
+    aspect-ratio: 4 / 5 !important;         /* enforce 4:5 ratio */
+    margin: 1.5rem auto !important;         /* center horizontally */
+    padding: 2rem !important;               /* same padding as desktop :contentReference[oaicite:0]{index=0} */
+    border-radius: 2rem !important;         /* match your orange card rounding :contentReference[oaicite:1]{index=1} */
+    display: grid !important;
+    grid-template-rows: 1fr auto !important; /* image fills, panel auto-height :contentReference[oaicite:2]{index=2} */
+    position: relative !important;
+    overflow: visible !important;           /* allow glow to spill out :contentReference[oaicite:3]{index=3} */
+    background: var(--first-color-alt) !important;
   }
-  .stat-icon {
-    width: 0.9rem;
-    height: 0.9rem;
+
+  /* 2) Portrait: absolute-center, full height, auto width (responsive) */
+  .home__container .perfil__img {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important; /* center both axes */
+    height: 100% !important;            /* fill the card height */
+    width: auto !important;             /* preserve aspect ratio */
+    object-fit: cover !important;
+    object-position: center !important;
+    border-radius: inherit !important;
   }
-  .stat-count {
-    font-size: 0.875rem;
-    min-width: 1.2rem;
+
+  /* 3) Data panel: drop over the bottom of the image, centered */
+  .home__container .perfil__data {
+    grid-row: 2 !important;
+    width: calc(100% - 3rem) !important;  /* match desktop width inside card */
+    margin: -60px auto 0 !important;      /* pull up 60px over image, auto-center */
+    padding: 1.5rem 1rem !important;
+    border-radius: 1.5rem !important;     /* same rounding as desktop :contentReference[oaicite:4]{index=4} */
+    background: hsla(0, 0%, 1%, 0.1) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
   }
-  .stat-label {
-    font-size: 0.65rem;
-  }
-   .perfil {
-    /* go full-width on mobile */
-    width: calc(100% - 2rem);
-    margin: 2rem auto;
-    grid-template-rows: auto auto; /* shrink image/data, then buttons */
-    border-radius: 10%;
-  }
-  .perfil__img {
-    position: relative;
-    top: auto; left: auto;
-    transform: none;
-    width: 100%;
-    height: auto;
-  }
-  .perfil__buttons {
-    margin-top: 1rem;
+
+  /* 4) Buttons: two equal columns inside that panel */
+  .home__container .perfil__buttons {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.5rem !important;
+    margin-top: 1rem !important;
   }
 }
+
+
+
+
 
 /* ————————————————————————
    RAINBOW BORDER ANIMATION
